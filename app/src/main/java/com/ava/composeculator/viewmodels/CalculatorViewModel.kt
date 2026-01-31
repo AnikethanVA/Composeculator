@@ -32,6 +32,9 @@ class CalculatorViewModel: ViewModel() {
             "÷",
             "×",
             "%", -> {
+                if(_displayText.value.isEmpty() || _displayText.value == ".") {
+                    return
+                }
                 if(isNumber1BeingAdded) {
                     number1 = _displayText.value.toDouble()
                     isNumber1BeingAdded = false
@@ -60,6 +63,9 @@ class CalculatorViewModel: ViewModel() {
                 updateDisplay(_displayText.value.dropLast(1))
             }
             "=" -> {
+                if(_displayText.value.isEmpty() || doesInputContainAnOperator() && operator.isEmpty()) {
+                    return
+                }
                 number2 = _displayText.value.toDouble()
                 calculateResult()
             }
@@ -79,6 +85,8 @@ class CalculatorViewModel: ViewModel() {
         }
         _displayText.value = formatNumber(result)
         number1 = result
+        number2 = 0.0
+        operator = ""
     }
 
     private fun formatNumber(number: Double): String {
