@@ -30,20 +30,21 @@ import androidx.compose.ui.unit.sp
 fun NumberButton(
     modifier: Modifier = Modifier,
     buttonNumber: Int,
-    onClick: (numberClicked: Int) -> Unit) {
+    onClick: (numberClicked: Int) -> Unit
+) {
 
     val interactionSource = remember { MutableInteractionSource() }
     val hapticFeedback = LocalHapticFeedback.current
     val isPressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
-        if(isPressed) 0.9f else 1f,
+        if (isPressed) 0.9f else 1f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioHighBouncy,
         )
     )
 
     val roundedCornerPercentage by animateIntAsState(
-        targetValue = if(isPressed) 30 else 100,
+        targetValue = if (isPressed) 30 else 100,
     )
 
     Button(
@@ -53,11 +54,9 @@ fun NumberButton(
             .then(modifier),
         shape = RoundedCornerShape(percent = roundedCornerPercentage),
         onClick = {
-            hapticFeedback.performHapticFeedback(
-                hapticFeedbackType = HapticFeedbackType.VirtualKey
-            )
+            hapticFeedback.performHapticFeedback(hapticFeedbackType = HapticFeedbackType.VirtualKey)
             onClick(buttonNumber)
-                  },
+        },
         colors = ButtonColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer,
             contentColor = MaterialTheme.colorScheme.onSurface,

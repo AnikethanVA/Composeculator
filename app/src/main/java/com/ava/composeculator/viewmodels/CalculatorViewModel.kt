@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class CalculatorViewModel: ViewModel() {
+class CalculatorViewModel : ViewModel() {
 
     private var number1: Double = 0.0
     private var number2: Double = 0.0
@@ -18,7 +18,7 @@ class CalculatorViewModel: ViewModel() {
     }
 
     fun onNumberClicked(number: Int) {
-        if(doesInputContainAnOperator() || _displayText.value == "0") {
+        if (doesInputContainAnOperator() || _displayText.value == "0") {
             updateDisplay(number.toString())
         } else {
             _displayText.value += number.toString()
@@ -26,35 +26,39 @@ class CalculatorViewModel: ViewModel() {
     }
 
     fun onOperatorClicked(operator: String) {
-        when(operator) {
+        when (operator) {
             "+",
             "-",
             "÷",
             "×",
-            "%", -> {
-                if(_displayText.value.isEmpty() || _displayText.value == ".") {
+            "%",
+                -> {
+                if (_displayText.value.isEmpty() || _displayText.value == ".") {
                     return
                 }
-                if(isNumber1BeingAdded) {
+                if (isNumber1BeingAdded) {
                     number1 = _displayText.value.toDouble()
                     isNumber1BeingAdded = false
                 }
                 this.operator = operator
                 updateDisplay(operator)
             }
+
             "AC" -> resetState()
             "00" -> {
-                if(!doesInputContainAnOperator() && _displayText.value != "0") {
+                if (!doesInputContainAnOperator() && _displayText.value != "0") {
                     _displayText.value += "00"
                 }
             }
+
             "." -> {
-                if(!doesInputContainAnOperator() && !doesInputContainDecimal()) {
+                if (!doesInputContainAnOperator() && !doesInputContainDecimal()) {
                     _displayText.value += "."
                 }
             }
+
             "⌫" -> {
-                if(doesInputContainAnOperator()) {
+                if (doesInputContainAnOperator()) {
                     this.operator = ""
                     _displayText.value = formatNumber(number1)
                     isNumber1BeingAdded = true
@@ -62,8 +66,9 @@ class CalculatorViewModel: ViewModel() {
                 }
                 updateDisplay(_displayText.value.dropLast(1))
             }
+
             "=" -> {
-                if(_displayText.value.isEmpty() || doesInputContainAnOperator() && operator.isEmpty()) {
+                if (_displayText.value.isEmpty() || doesInputContainAnOperator() && operator.isEmpty()) {
                     return
                 }
                 number2 = _displayText.value.toDouble()
@@ -73,7 +78,7 @@ class CalculatorViewModel: ViewModel() {
     }
 
     private fun calculateResult() {
-        val result: Double = when(operator) {
+        val result: Double = when (operator) {
             "+" -> number1 + number2
             "-" -> number1 - number2
             "×" -> number1 * number2
@@ -90,7 +95,7 @@ class CalculatorViewModel: ViewModel() {
     }
 
     private fun formatNumber(number: Double): String {
-        return if(number % 1.0 == 0.0) number.toInt().toString() else number.toString()
+        return if (number % 1.0 == 0.0) number.toInt().toString() else number.toString()
     }
 
     private fun doesInputContainAnOperator(): Boolean {

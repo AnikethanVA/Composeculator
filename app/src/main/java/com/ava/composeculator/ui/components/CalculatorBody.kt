@@ -47,8 +47,7 @@ fun CalculatorBody(
             modifier = Modifier
                 .fillMaxHeight(0.4f)
                 .fillMaxWidth()
-                .wrapContentHeight(Alignment.Bottom)
-            ,
+                .wrapContentHeight(Alignment.Bottom),
             text = displayText,
             textAlign = TextAlign.End,
             maxLines = 1,
@@ -67,62 +66,92 @@ fun CalculatorBody(
         ) {
 
 
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                OperatorButton (buttonOperator = "AC", onClick = calculatorViewModel::onOperatorClicked)
-                OperatorButton (buttonOperator = "00", onClick = calculatorViewModel::onOperatorClicked)
-                OperatorButton (buttonOperator = "%", onClick = calculatorViewModel::onOperatorClicked)
-                OperatorButton (buttonOperator = "÷", onClick = calculatorViewModel::onOperatorClicked)
+                OperatorButton(
+                    buttonOperator = "AC",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
+                OperatorButton(
+                    buttonOperator = "00",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
+                OperatorButton(
+                    buttonOperator = "%",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
+                OperatorButton(
+                    buttonOperator = "÷",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
             }
 
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 NumberButton(buttonNumber = 7, onClick = calculatorViewModel::onNumberClicked)
-                NumberButton (buttonNumber = 8, onClick = calculatorViewModel::onNumberClicked)
-                NumberButton (buttonNumber = 9, onClick = calculatorViewModel::onNumberClicked)
-                OperatorButton (buttonOperator = "×", onClick = calculatorViewModel::onOperatorClicked)
+                NumberButton(buttonNumber = 8, onClick = calculatorViewModel::onNumberClicked)
+                NumberButton(buttonNumber = 9, onClick = calculatorViewModel::onNumberClicked)
+                OperatorButton(
+                    buttonOperator = "×",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
             }
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 NumberButton(buttonNumber = 4, onClick = calculatorViewModel::onNumberClicked)
-                NumberButton (buttonNumber = 5, onClick = calculatorViewModel::onNumberClicked)
-                NumberButton (buttonNumber = 6, onClick = calculatorViewModel::onNumberClicked)
-                OperatorButton (buttonOperator = "-", onClick = calculatorViewModel::onOperatorClicked)
+                NumberButton(buttonNumber = 5, onClick = calculatorViewModel::onNumberClicked)
+                NumberButton(buttonNumber = 6, onClick = calculatorViewModel::onNumberClicked)
+                OperatorButton(
+                    buttonOperator = "-",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
             }
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 NumberButton(buttonNumber = 1, onClick = calculatorViewModel::onNumberClicked)
-                NumberButton (buttonNumber = 2, onClick = calculatorViewModel::onNumberClicked)
-                NumberButton (buttonNumber = 3, onClick = calculatorViewModel::onNumberClicked)
-                OperatorButton (buttonOperator = "+", onClick = calculatorViewModel::onOperatorClicked)
+                NumberButton(buttonNumber = 2, onClick = calculatorViewModel::onNumberClicked)
+                NumberButton(buttonNumber = 3, onClick = calculatorViewModel::onNumberClicked)
+                OperatorButton(
+                    buttonOperator = "+",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
             }
 
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                OperatorButton (buttonOperator = ".", onClick = calculatorViewModel::onOperatorClicked)
+                OperatorButton(
+                    buttonOperator = ".",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
                 NumberButton(buttonNumber = 0, onClick = calculatorViewModel::onNumberClicked)
-                OperatorButton (buttonOperator = "⌫", onClick = calculatorViewModel::onOperatorClicked)
-                OperatorButton (buttonOperator = "=", onClick = calculatorViewModel::onOperatorClicked)
+                OperatorButton(
+                    buttonOperator = "⌫",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
+                OperatorButton(
+                    buttonOperator = "=",
+                    onClick = calculatorViewModel::onOperatorClicked
+                )
             }
         }
     }

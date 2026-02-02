@@ -30,32 +30,32 @@ import androidx.compose.ui.unit.sp
 fun OperatorButton(
     modifier: Modifier = Modifier,
     buttonOperator: String,
-    onClick: (numberClicked: String) -> Unit) {
+    onClick: (numberClicked: String) -> Unit
+) {
 
     val interactionSource = remember { MutableInteractionSource() }
     val hapticFeedback = LocalHapticFeedback.current
     val isPressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
-        if(isPressed) 0.9f else 1f,
+        if (isPressed) 0.9f else 1f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioHighBouncy,
         )
     )
 
     val roundedCornerPercentage by animateIntAsState(
-        targetValue = if(isPressed) 30 else 100,
+        targetValue = if (isPressed) 30 else 100,
     )
     Button(
-        modifier = Modifier.size(80.dp)
+        modifier = Modifier
+            .size(80.dp)
             .scale(scale)
             .then(modifier),
         shape = RoundedCornerShape(percent = roundedCornerPercentage),
         onClick = {
-            hapticFeedback.performHapticFeedback(
-                hapticFeedbackType = HapticFeedbackType.VirtualKey
-            )
+            hapticFeedback.performHapticFeedback(hapticFeedbackType = HapticFeedbackType.VirtualKey)
             onClick(buttonOperator)
-                  },
+        },
         colors = ButtonColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -73,7 +73,6 @@ fun OperatorButton(
             autoSize = TextAutoSize.StepBased(
                 maxFontSize = 30.sp
             ),
-
         )
     }
 }
